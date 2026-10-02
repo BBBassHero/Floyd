@@ -159,3 +159,29 @@ output wire               i2s_data
 下一步建议：
 ```
 
+
+## 11. ADSR 接口
+
+`adsr.v` 负责单个声部的包络状态和幅度控制，包络值为无符号定点幅度：`0` 表示静音，最大值 `2^ENVELOPE_WIDTH-1` 表示满幅。
+
+```verilog
+input  wire                         clk
+input  wire                         rst_n
+input  wire                         sample_tick
+input  wire                         note_on
+input  wire                         note_off
+input  wire [RATE_WIDTH-1:0]        attack_rate
+input  wire [RATE_WIDTH-1:0]       decay_rate
+input  wire [ENVELOPE_WIDTH-1:0]    sustain_level
+input  wire [RATE_WIDTH-1:0]        release_rate
+output reg  [ENVELOPE_WIDTH-1:0]    envelope_level
+output reg                          voice_finished
+output reg  [2:0]                   state
+```
+
+- 状态编码：`IDLE=0`、`ATTACK=1`、`DECAY=2`、`SUSTAIN=3`、`RELEASE=4`。
+- `note_on` 优先级最高，立即清零包络并进入 `ATTACK`，支持释放期间重新触发。
+- `note_off` 将非空闲声部切换到 `RELEASE`。
+- 包络电平只在 `sample_tick=1` 时更新。
+- `attack_rate`、`decay_rate`、`release_rate` 表示两次电平变化之间的采样 tick 数；输入为 0 时按 1 处理。
+- Release 到零时，`voice_finished` 输出一个主时钟周期的脉冲，状态回到 `IDLE`。
