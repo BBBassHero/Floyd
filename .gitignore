@@ -1,0 +1,19 @@
+# 仿真产物
+simulation_outputs/
+*.vcd
+*.vvp
+*.lxt
+*.lxt2
+*.fst
+
+# 综合/实现产物
+*.bit
+*.bin
+*.jed
+*.rpt
+*.log
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
