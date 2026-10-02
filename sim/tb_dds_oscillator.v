@@ -1,11 +1,12 @@
 `timescale 1ns/1ps
 
-`include "../rtl/common/parameters.vh"
+`include "parameters.vh"
 
 module tb_dds_oscillator;
 
     localparam integer CLK_PERIOD_NS = 20;
     localparam integer SAMPLE_DIV = 1042;
+    localparam integer CAPTURE_SAMPLES = 8192;
     // round(440 * 2^32 / 48000) = 0x0258BF26
     localparam integer PHASE_STEP_A4 = 32'h0258_BF26;
 
@@ -58,19 +59,22 @@ module tb_dds_oscillator;
     end
 
     initial begin
+        $dumpfile("simulation_outputs/tb_dds_oscillator.vcd");
+        $dumpvars(0, tb_dds_oscillator);
+
         rst_n        = 1'b0;
         enable       = 1'b0;
         phase_step   = {`FLOYD_PHASE_WIDTH{1'b0}};
         clk_count    = 0;
         sample_count = 0;
-        sample_file  = $fopen("dds_samples.txt", "w");
+        sample_file  = $fopen("simulation_outputs/dds_samples.txt", "w");
 
         repeat (10) @(posedge clk);
         rst_n      = 1'b1;
         enable     = 1'b1;
         phase_step = PHASE_STEP_A4;
 
-        repeat (SAMPLE_DIV * 120) @(posedge clk);
+        repeat (SAMPLE_DIV * CAPTURE_SAMPLES) @(posedge clk);
 
         $fclose(sample_file);
         $display("DDS test completed, samples captured: %0d", sample_count);
