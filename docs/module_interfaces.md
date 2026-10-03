@@ -206,5 +206,7 @@ output reg  signed [15:0]           voice_sample
 
 - `voice_note` 和 `voice_velocity` 由声部管理器保存；第一版频率控制由上层转换为 `phase_step`。
 - `voice_sample = DDS_sample × envelope_level × voice_volume`，两个 8 位控制量按 Q0.8 缩放。
-- `voice_sample` 在非活动状态输出零，并在 `sample_tick` 驱动下更新底层音频状态。
+- oice_sample 在非活动状态输出零，并在 sample_tick 驱动下更新底层音频状态。
+- oice_volume=0 完全静音，oice_volume=8'd128 约为满音量的一半，oice_volume=8'hFF 为满音量。
+- 缩放顺序为先乘 ADSR 包络，再乘声部音量；输出超出 16 位有符号范围时执行饱和限制。
 - 当前 DDS 使用已有正弦波 ROM；`waveform_select` 已保留为扩展接口，后续增加方波或三角波时不需要修改声部接口。

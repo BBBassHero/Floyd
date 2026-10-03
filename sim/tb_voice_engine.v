@@ -25,6 +25,9 @@ module tb_voice_engine;
     wire voice_active;
     wire voice_finished;
     wire signed [`FLOYD_AUDIO_WIDTH-1:0] voice_sample;
+    wire voice_active_half;
+    wire voice_finished_half;
+    wire signed [`FLOYD_AUDIO_WIDTH-1:0] voice_sample_half;
 
     voice_engine u_voice (
         .clk(clk),
@@ -44,6 +47,28 @@ module tb_voice_engine;
         .voice_active(voice_active),
         .voice_finished(voice_finished),
         .voice_sample(voice_sample)
+    );
+
+    // A second identical voice provides a same-phase reference for the
+    // Q0.8 half-volume check.
+    voice_engine u_voice_half (
+        .clk(clk),
+        .rst_n(rst_n),
+        .sample_tick(sample_tick),
+        .voice_note_on(voice_note_on),
+        .voice_note_off(voice_note_off),
+        .voice_note(voice_note),
+        .voice_velocity(voice_velocity),
+        .phase_step(phase_step),
+        .waveform_select(waveform_select),
+        .voice_volume(8'd128),
+        .attack_rate(attack_rate),
+        .decay_rate(decay_rate),
+        .sustain_level(sustain_level),
+        .release_rate(release_rate),
+        .voice_active(voice_active_half),
+        .voice_finished(voice_finished_half),
+        .voice_sample(voice_sample_half)
     );
 
     initial clk = 1'b0;
@@ -78,6 +103,9 @@ module tb_voice_engine;
 
     integer sample_count;
     integer nonzero_count;
+    integer raw_product;
+    integer expected_full;
+    integer expected_half;
     initial begin
         $dumpfile("simulation_outputs/tb_voice_engine.vcd");
         $dumpvars(0, tb_voice_engine);
@@ -126,6 +154,37 @@ module tb_voice_engine;
             $display("FAIL: voice did not produce a nonzero audio sample");
             $finish;
         end
+
+        // Both instances must have the same phase and envelope. Calculate
+        // the expected outputs from the shared pre-volume signal so the test
+        // checks the actual Q0.8 definition, not an approximation of full
+        // volume multiplied by one half.
+        if (u_voice.u_dds.phase !== u_voice_half.u_dds.phase ||
+            u_voice.u_adsr.envelope_level !== u_voice_half.u_adsr.envelope_level) begin
+            $display("FAIL: full and half-volume references are out of sync");
+            $finish;
+        end
+
+        raw_product = $signed(u_voice.u_dds.audio_sample) * u_voice.u_adsr.envelope_level;
+        expected_full = (raw_product * 255) >>> 16;
+        expected_half = (raw_product * 128) >>> 16;
+
+        if ($signed(voice_sample) !== expected_full) begin
+            $display("FAIL: full-volume scaling mismatch, actual=%0d expected=%0d", voice_sample, expected_full);
+            $finish;
+        end
+        if ($signed(voice_sample_half) !== expected_half) begin
+            $display("FAIL: half-volume scaling mismatch, actual=%0d expected=%0d", voice_sample_half, expected_half);
+            $finish;
+        end
+
+        voice_volume = 8'd0;
+        pulse_sample_tick();
+        if (voice_sample !== 0) begin
+            $display("FAIL: zero volume did not mute the voice, sample=%0d", voice_sample);
+            $finish;
+        end
+        voice_volume = 8'hff;
 
         pulse_note_off();
         if (voice_active !== 1'b1) begin
