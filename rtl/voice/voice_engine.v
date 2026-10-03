@@ -39,7 +39,7 @@ module voice_engine #(
 
     // The note and velocity are part of the shared voice interface. The
     // voice manager converts the note to phase_step before this module.
-    wire unused_inputs = ^{voice_note, voice_velocity, waveform_select};
+    wire unused_inputs = ^{voice_note, voice_velocity};
 
     assign voice_active = (envelope_state != `FLOYD_ADSR_STATE_IDLE);
 
@@ -52,6 +52,7 @@ module voice_engine #(
         .sample_tick(sample_tick),
         .enable(voice_active),
         .phase_step(phase_step),
+        .waveform_select(waveform_select),
         .audio_sample(oscillator_sample),
         .phase(oscillator_phase)
     );

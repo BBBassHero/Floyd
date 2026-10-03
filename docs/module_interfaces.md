@@ -206,5 +206,10 @@ output reg  signed [15:0]           voice_sample
 
 - `voice_note` 和 `voice_velocity` 由声部管理器保存；第一版频率控制由上层转换为 `phase_step`。
 - `voice_sample = DDS_sample × envelope_level × voice_volume`，两个 8 位控制量按 Q0.8 缩放。
-- `voice_sample` 在非活动状态输出零，并在 `sample_tick` 驱动下更新底层音频状态。
-- 当前 DDS 使用已有正弦波 ROM；`waveform_select` 已保留为扩展接口，后续增加方波或三角波时不需要修改声部接口。
+- oice_sample 在非活动状态输出零，并在 sample_tick 驱动下更新底层音频状态。
+- oice_volume=0 完全静音，oice_volume=8'd128 约为满音量的一半，oice_volume=8'hFF 为满音量。
+- 缩放顺序为先乘 ADSR 包络，再乘声部音量；输出超出 16 位有符号范围时执行饱和限制。
+- `waveform_select` 编码为：`3'd0` 正弦波、`3'd1` 方波、`3'd2` 三角波。
+- 三种波形统一使用波表：正弦波读取 `rom/sine.hex`，方波读取 `rom/square.hex`，三角波读取 `rom/triangle.hex`。
+- 三套波表均为 1024 点、16 位二进制补码；波表地址都来自同一个 DDS 相位高位，因此切换波形时保持相位对齐。
+- 方波波表使用 `16'sh7FFF` 和 `16'sh8000`；三角波波表的正、负峰值分别为 `32767` 和 `-32767`。

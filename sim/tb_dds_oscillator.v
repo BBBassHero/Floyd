@@ -15,6 +15,7 @@ module tb_dds_oscillator;
     reg sample_tick;
     reg enable;
     reg [`FLOYD_PHASE_WIDTH-1:0] phase_step;
+    reg [2:0] waveform_select;
 
     wire signed [`FLOYD_AUDIO_WIDTH-1:0] audio_sample;
     wire [`FLOYD_PHASE_WIDTH-1:0] phase;
@@ -29,6 +30,7 @@ module tb_dds_oscillator;
         .sample_tick(sample_tick),
         .enable(enable),
         .phase_step(phase_step),
+        .waveform_select(waveform_select),
         .audio_sample(audio_sample),
         .phase(phase)
     );
@@ -65,6 +67,7 @@ module tb_dds_oscillator;
         rst_n        = 1'b0;
         enable       = 1'b0;
         phase_step   = {`FLOYD_PHASE_WIDTH{1'b0}};
+        waveform_select = `FLOYD_WAVE_SINE;
         clk_count    = 0;
         sample_count = 0;
         sample_file  = $fopen("simulation_outputs/dds_samples.txt", "w");

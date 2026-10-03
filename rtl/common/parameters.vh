@@ -11,6 +11,11 @@
 `define FLOYD_WAVE_TABLE_DEPTH       1024
 `define FLOYD_WAVE_ADDR_WIDTH        10
 `define FLOYD_SINE_ROM_FILE          "rom/sine.hex"
+`define FLOYD_SQUARE_ROM_FILE        "rom/square.hex"
+`define FLOYD_TRIANGLE_ROM_FILE      "rom/triangle.hex"
+`define FLOYD_WAVE_SINE              3'd0
+`define FLOYD_WAVE_SQUARE            3'd1
+`define FLOYD_WAVE_TRIANGLE          3'd2
 
 // ADSR state encoding shared by the voice engine and verification code.
 `define FLOYD_ADSR_STATE_WIDTH       3
