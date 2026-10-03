@@ -185,3 +185,26 @@ output reg  [2:0]                   state
 - 包络电平只在 `sample_tick=1` 时更新。
 - `attack_rate`、`decay_rate`、`release_rate` 表示两次电平变化之间的采样 tick 数；输入为 0 时按 1 处理。
 - Release 到零时，`voice_finished` 输出一个主时钟周期的脉冲，状态回到 `IDLE`。
+
+## 12. 单声部音频引擎
+
+`voice_engine.v` 连接 DDS 与 ADSR，输出一个声部的 16 位有符号音频采样。
+
+```verilog
+input  wire                         sample_tick
+input  wire                         voice_note_on
+input  wire                         voice_note_off
+input  wire [6:0]                   voice_note
+input  wire [7:0]                   voice_velocity
+input  wire [31:0]                  phase_step
+input  wire [2:0]                   waveform_select
+input  wire [7:0]                   voice_volume
+output wire                         voice_active
+output wire                         voice_finished
+output reg  signed [15:0]           voice_sample
+```
+
+- `voice_note` 和 `voice_velocity` 由声部管理器保存；第一版频率控制由上层转换为 `phase_step`。
+- `voice_sample = DDS_sample × envelope_level × voice_volume`，两个 8 位控制量按 Q0.8 缩放。
+- `voice_sample` 在非活动状态输出零，并在 `sample_tick` 驱动下更新底层音频状态。
+- 当前 DDS 使用已有正弦波 ROM；`waveform_select` 已保留为扩展接口，后续增加方波或三角波时不需要修改声部接口。
