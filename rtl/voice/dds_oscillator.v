@@ -11,6 +11,7 @@ module dds_oscillator #(
     input  wire                         sample_tick,
     input  wire                         enable,
     input  wire [PHASE_WIDTH-1:0]       phase_step,
+    input  wire [2:0]                   waveform_select,
     output reg  signed [AUDIO_WIDTH-1:0] audio_sample,
     output wire [PHASE_WIDTH-1:0]       phase
 );
@@ -24,6 +25,7 @@ module dds_oscillator #(
 
     waveform_rom u_waveform_rom (
         .addr(wave_addr),
+        .waveform_select(waveform_select),
         .data(wave_sample)
     );
 
