@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="voice_engine" Lut="19" MULTALU27X18="2" T_Register="72(0)" T_Alu="40(0)" T_Lut="286(19)" T_MULTALU27X18="2(2)" T_Bsram="3(0)">
+ <SubModule name="u_dds" Register="52" Alu="32" Lut="42" T_Register="52(52)" T_Alu="32(32)" T_Lut="75(42)" T_Bsram="3(0)">
+  <SubModule name="u_waveform_rom" Lut="33" Bsram="3" T_Lut="33(33)" T_Bsram="3(3)"/>
+ </SubModule>
+ <SubModule name="u_adsr" Register="20" Alu="8" Lut="192" T_Register="20(20)" T_Alu="8(8)" T_Lut="192(192)"/>
+</Module>

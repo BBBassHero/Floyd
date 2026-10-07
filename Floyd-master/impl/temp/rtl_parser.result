@@ -1,0 +1,18 @@
+[
+ {
+  "InstFile" : "D:/HUST/FPGA/Floyd-master/rtl/common/clock_enable.v",
+  "InstLine" : 3,
+  "InstName" : "clock_enable",
+  "ModuleFile" : "D:/HUST/FPGA/Floyd-master/rtl/common/clock_enable.v",
+  "ModuleLine" : 3,
+  "ModuleName" : "clock_enable"
+ },
+ {
+  "InstFile" : "D:/HUST/FPGA/Floyd-master/rtl/common/reset_sync.v",
+  "InstLine" : 3,
+  "InstName" : "reset_sync",
+  "ModuleFile" : "D:/HUST/FPGA/Floyd-master/rtl/common/reset_sync.v",
+  "ModuleLine" : 3,
+  "ModuleName" : "reset_sync"
+ }
+]
