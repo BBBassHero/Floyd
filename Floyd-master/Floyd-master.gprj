@@ -1,0 +1,20 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device>
+    <FileList>
+        <File path="rtl/audio/i2s_tx.v" type="file.verilog" enable="1"/>
+        <File path="rtl/common/clock_enable.v" type="file.verilog" enable="1"/>
+        <File path="rtl/common/parameters.vh" type="file.verilog" enable="1"/>
+        <File path="rtl/common/reset_sync.v" type="file.verilog" enable="1"/>
+        <File path="rtl/display/led_status.v" type="file.verilog" enable="1"/>
+        <File path="rtl/top/top_music.v" type="file.verilog" enable="1"/>
+        <File path="rtl/voice/adsr.v" type="file.verilog" enable="1"/>
+        <File path="rtl/voice/dds_oscillator.v" type="file.verilog" enable="1"/>
+        <File path="rtl/voice/voice_engine.v" type="file.verilog" enable="1"/>
+        <File path="rtl/voice/waveform_rom.v" type="file.verilog" enable="1"/>
+        <File path="constraints/tang_mega60k.cst" type="file.cst" enable="1"/>
+    </FileList>
+</Project>

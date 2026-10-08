@@ -1,0 +1,53 @@
+{
+ "Device" : "GW5AT-60B",
+ "Files" : [
+  {
+   "Path" : "D:/HUST/FPGA/Floyd-master/rtl/audio/i2s_tx.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/HUST/FPGA/Floyd-master/rtl/common/clock_enable.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/HUST/FPGA/Floyd-master/rtl/common/parameters.vh",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/HUST/FPGA/Floyd-master/rtl/common/reset_sync.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/HUST/FPGA/Floyd-master/rtl/display/led_status.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/HUST/FPGA/Floyd-master/rtl/top/top_music.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/HUST/FPGA/Floyd-master/rtl/voice/dds_oscillator.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/HUST/FPGA/Floyd-master/rtl/voice/voice_engine.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/HUST/FPGA/Floyd-master/rtl/voice/waveform_rom.v",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "D:/HUST/FPGA/Floyd-master/rtl/voice/adsr.v",
+   "Type" : "verilog"
+  }
+ ],
+ "IncludePath" : [
+
+ ],
+ "LoopLimit" : 2000,
+ "ResultFile" : "D:/HUST/FPGA/Floyd-master/impl/temp/rtl_parser.result",
+ "Top" : "",
+ "VerilogStd" : "verilog_2001",
+ "VhdlStd" : "vhdl_93"
+}

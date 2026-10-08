@@ -1,0 +1,61 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'D:\HUST\FPGA\Floyd-master\rtl\audio\i2s_tx.v'
+Analyzing included file 'D:\HUST\FPGA\Floyd-master\rtl\common\parameters.vh'("D:\HUST\FPGA\Floyd-master\rtl\audio\i2s_tx.v":1)
+Back to file 'D:\HUST\FPGA\Floyd-master\rtl\audio\i2s_tx.v'("D:\HUST\FPGA\Floyd-master\rtl\audio\i2s_tx.v":1)
+Analyzing Verilog file 'D:\HUST\FPGA\Floyd-master\rtl\common\clock_enable.v'
+Analyzing included file 'D:\HUST\FPGA\Floyd-master\rtl\common\parameters.vh'("D:\HUST\FPGA\Floyd-master\rtl\common\clock_enable.v":1)
+Back to file 'D:\HUST\FPGA\Floyd-master\rtl\common\clock_enable.v'("D:\HUST\FPGA\Floyd-master\rtl\common\clock_enable.v":1)
+Analyzing Verilog file 'D:\HUST\FPGA\Floyd-master\rtl\common\parameters.vh'
+Analyzing Verilog file 'D:\HUST\FPGA\Floyd-master\rtl\common\reset_sync.v'
+Analyzing included file 'D:\HUST\FPGA\Floyd-master\rtl\common\parameters.vh'("D:\HUST\FPGA\Floyd-master\rtl\common\reset_sync.v":1)
+Back to file 'D:\HUST\FPGA\Floyd-master\rtl\common\reset_sync.v'("D:\HUST\FPGA\Floyd-master\rtl\common\reset_sync.v":1)
+Analyzing Verilog file 'D:\HUST\FPGA\Floyd-master\rtl\display\led_status.v'
+Analyzing included file 'D:\HUST\FPGA\Floyd-master\rtl\common\parameters.vh'("D:\HUST\FPGA\Floyd-master\rtl\display\led_status.v":1)
+Back to file 'D:\HUST\FPGA\Floyd-master\rtl\display\led_status.v'("D:\HUST\FPGA\Floyd-master\rtl\display\led_status.v":1)
+Analyzing Verilog file 'D:\HUST\FPGA\Floyd-master\rtl\top\top_music.v'
+Analyzing included file 'D:\HUST\FPGA\Floyd-master\rtl\common\parameters.vh'("D:\HUST\FPGA\Floyd-master\rtl\top\top_music.v":1)
+Back to file 'D:\HUST\FPGA\Floyd-master\rtl\top\top_music.v'("D:\HUST\FPGA\Floyd-master\rtl\top\top_music.v":1)
+Undeclared symbol 'enc_a', assumed default net type 'wire'("D:\HUST\FPGA\Floyd-master\rtl\top\top_music.v":114)
+Undeclared symbol 'enc_b', assumed default net type 'wire'("D:\HUST\FPGA\Floyd-master\rtl\top\top_music.v":115)
+Analyzing Verilog file 'D:\HUST\FPGA\Floyd-master\rtl\voice\dds_oscillator.v'
+Analyzing included file 'D:\HUST\FPGA\Floyd-master\rtl\common\parameters.vh'("D:\HUST\FPGA\Floyd-master\rtl\voice\dds_oscillator.v":3)
+Back to file 'D:\HUST\FPGA\Floyd-master\rtl\voice\dds_oscillator.v'("D:\HUST\FPGA\Floyd-master\rtl\voice\dds_oscillator.v":3)
+Analyzing Verilog file 'D:\HUST\FPGA\Floyd-master\rtl\voice\voice_engine.v'
+Analyzing included file 'D:\HUST\FPGA\Floyd-master\rtl\common\parameters.vh'("D:\HUST\FPGA\Floyd-master\rtl\voice\voice_engine.v":3)
+Back to file 'D:\HUST\FPGA\Floyd-master\rtl\voice\voice_engine.v'("D:\HUST\FPGA\Floyd-master\rtl\voice\voice_engine.v":3)
+Analyzing Verilog file 'D:\HUST\FPGA\Floyd-master\rtl\voice\waveform_rom.v'
+Analyzing included file 'D:\HUST\FPGA\Floyd-master\rtl\common\parameters.vh'("D:\HUST\FPGA\Floyd-master\rtl\voice\waveform_rom.v":3)
+Back to file 'D:\HUST\FPGA\Floyd-master\rtl\voice\waveform_rom.v'("D:\HUST\FPGA\Floyd-master\rtl\voice\waveform_rom.v":3)
+Analyzing Verilog file 'D:\HUST\FPGA\Floyd-master\rtl\voice\adsr.v'
+Analyzing included file 'D:\HUST\FPGA\Floyd-master\rtl\common\parameters.vh'("D:\HUST\FPGA\Floyd-master\rtl\voice\adsr.v":3)
+Back to file 'D:\HUST\FPGA\Floyd-master\rtl\voice\adsr.v'("D:\HUST\FPGA\Floyd-master\rtl\voice\adsr.v":3)
+Compiling module 'voice_engine'("D:\HUST\FPGA\Floyd-master\rtl\voice\voice_engine.v":7)
+Compiling module 'dds_oscillator'("D:\HUST\FPGA\Floyd-master\rtl\voice\dds_oscillator.v":5)
+Compiling module 'waveform_rom'("D:\HUST\FPGA\Floyd-master\rtl\voice\waveform_rom.v":5)
+Extracting RAM for identifier 'sine_rom'("D:\HUST\FPGA\Floyd-master\rtl\voice\waveform_rom.v":15)
+Extracting RAM for identifier 'square_rom'("D:\HUST\FPGA\Floyd-master\rtl\voice\waveform_rom.v":16)
+Extracting RAM for identifier 'triangle_rom'("D:\HUST\FPGA\Floyd-master\rtl\voice\waveform_rom.v":17)
+Compiling module 'adsr'("D:\HUST\FPGA\Floyd-master\rtl\voice\adsr.v":8)
+NOTE  (EX0101) : Current top module is "voice_engine"
+[5%] Running netlist conversion ...
+WARN  (CV0016) : Input voice_note is unused("D:\HUST\FPGA\Floyd-master\rtl\voice\voice_engine.v":18)
+WARN  (CV0016) : Input voice_velocity is unused("D:\HUST\FPGA\Floyd-master\rtl\voice\voice_engine.v":19)
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+[95%] Generate netlist file "D:\HUST\FPGA\Floyd-master\impl\gwsynthesis\Floyd-master.vg" completed
+[100%] Generate report file "D:\HUST\FPGA\Floyd-master\impl\gwsynthesis\Floyd-master_syn.rpt.html" completed
+GowinSynthesis finish
