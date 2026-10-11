@@ -219,3 +219,5 @@ output reg  signed [15:0]           voice_sample
 `audio_pipeline.v` 实例化 4 个 `voice_engine`，并将四路 16 位有符号采样连接到 `mixer.v`。四个声部共享 `sample_tick`、ADSR 参数，但各自拥有独立的音符事件、相位步进、波形和音量。
 
 `mixer.v` 使用 18 位有符号累加器计算四路采样之和，随后右移 2 位进行四声部平均缩放，最后饱和截断到 16 位有符号输出。这样四个满幅同相声部不会发生数值回绕；全静音输入输出为零。
+
+完整端口表、成员 B/C 接入要求、验证命令和已知限制见 [`docs/audio_pipeline_handoff.md`](audio_pipeline_handoff.md)。
